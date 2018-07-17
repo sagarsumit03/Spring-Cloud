@@ -48,11 +48,11 @@ public class ConsumerClientApplication {
 	@HystrixCommand(fallbackMethod = "fallback")
 	@RequestMapping("/hystrix")
 	public String hystrix() {
-		return restTemplate.getForObject("http://expose-client/hello", String.class);
+		return restTemplate.getForObject("http://expose-client/circuit-breaker", String.class);
 	}
 
 	// a fallback method to be called if failure happened
-	public String fallback(int galleryId, Throwable hystrixCommand) {
+	public String fallback() {
 		return "Circuit Breaker fallback function";
 	}
 
