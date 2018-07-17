@@ -16,7 +16,11 @@ to use the clients from eureka server:
 http://localhost:8302/api/client1/**
 http://localhost:8302/api/client2/**
 
+to Test Hystrix you can goto below URL:
+http://localhost:8302/api/client1/hystrix
 
+to Test Sleuth you can goto below URL:
+http://localhost:8302/api/client2/sleuth
 ------------
 
 
