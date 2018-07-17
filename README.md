@@ -7,20 +7,22 @@
 ###### Running the Application:
 start all the Application with their respective main classes. and use below URLs to check the Servers:
 
-http://localhost:8302 -- Eureka Server
-http://localhost:8301 -- Consume-Client
-http://localhost:8303 -- Expose-Client
+ http://localhost:8302 -- Eureka Server  
+ http://localhost:8301 -- Consume-Client  
+ http://localhost:8303 -- Expose-Client  
 
 to use the clients from eureka server:
 
-http://localhost:8302/api/client1/**
-http://localhost:8302/api/client2/**
+ http://localhost:8302/api/client1/**  
+ http://localhost:8302/api/client2/**  
 
-to Test Hystrix you can goto below URL:
-http://localhost:8302/api/client1/hystrix
+ to Test Hystrix you can goto below URL:  
+ http://localhost:8302/api/client1/hystrix  
 
-to Test Sleuth you can goto below URL:
-http://localhost:8302/api/client2/sleuth
+ to Test Sleuth you can goto below URL:  
+ http://localhost:8302/api/client2/sleuth  
+
+
 ------------
 
 
@@ -113,7 +115,7 @@ zuul:
       url: http://localhost:8303
 ```
 
-
+-----
 ##### Hystirx Circuit Breaker:
 When calling chained services any service can fail any time. For Example, we have 3 services A, B, C 
   A ->B and B->C  (A calls B and B calls C, lets say C failed)
