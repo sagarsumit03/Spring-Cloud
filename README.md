@@ -2,7 +2,7 @@
 # Spring Cloud:
 
 ### Spring cloud Architecture:
-![]()
+![](https://github.com/sagarsumit03/Spring-Cloud/blob/master/Diagram.PNG)
 
 ###### Running the Application:
 start all the Application with their respective main classes. and use below URLs to check the Servers:
@@ -108,3 +108,49 @@ zuul:
     client2:
       url: http://localhost:8303
 ```
+
+
+##### Hystirx Circuit Breaker:
+When calling chained services any service can fail any time. For Example, we have 3 services A, B, C 
+  A ->B and B->C  (A calls B and B calls C, lets say C failed)
+We need a callback function to handle the Exception and not chain down to the Application A.
+Hystrix is there for the rescue. **Hystrix** is the implementation of Circuit Breaker pattern, which gives a control over latency and failure between distributed services. The motto here is to stop cascading the error.
+for this Add the below annotation to the spring Boot main Class:
+```java
+@EnableEurekaClient
+@RestController
+@EnableDiscoveryClient
+@EnableCircuitBreaker
+//@RibbonClient(name = "expose-client", configuration = SayHelloConfiguration.class)
+@SpringBootApplication
+public class ConsumerClientApplication {
+```
+
+Spring looks for any method annotated with the @HystrixCommand annotation, and wraps that method so that Hystrix can monitor it.
+
+Hystrix watches for failures in that method, and if failures occures, Hystrix opens the circuit so that subsequent calls will automatically fail. Therefore, and while the circuit is open, Hystrix redirects calls to the fallback method.
+
+```java
+@HystrixCommand(fallbackMethod = "fallback")
+	@RequestMapping("/hystrix")
+	public String hystrix() {
+		return restTemplate.getForObject("http://expose-client/circuit-breaker", String.class);
+	}
+```
+
+**NOTE:** When you define a fallback method with that annotation the fallback method must match the same parameters of the method where you define the Hystrix Command.
+
+------------
+
+
+##### Sleuth For Tracing Services:
+Lets say there are many services, instances or replicas. In that case when services are interacting and calling each other, it can be quite hard to trace one Service's path.
+
+Sleuth makes it possible to trace the requests by adding unique ids to logs.
+
+A trace id (1st) is used for tracking across the microservices; represents the whole journey of a request across all the microservices, while span id (2nd) is used for tracking within the individual microservice.
+To Use Sleuth, use regular loggers in the code, and when the Logs are logged(Or executed) Sleuth willl add special Ids we mentioned above:
+
+
+    2018-07-17 10:40:26.010  INFO [expose-client,11b669ada16b7fae,11b669ada16b7fae,false] 4004 --- [nio-8303-exec-3] c.e.expose.demo.ExposeClientApplication  : Into ExposeClient Sleuth method ... 
+
