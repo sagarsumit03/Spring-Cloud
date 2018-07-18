@@ -42,6 +42,20 @@ But, still, we may have more than one service (instances) running on different p
     We can filter requests, add authentication, etc.
 
 
+
+###### Netflix uses Zuul for the following:
+
+- Authentication
+- Insights
+- Stress Testing
+- Canary Testing
+- Dynamic Routing
+- Service Migration
+- Load Shedding
+- Security
+- Static Response handling
+- Active/Active traffic management
+
 ##### Service Discovery: Eureka Server
 
 
