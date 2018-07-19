@@ -3,7 +3,7 @@
 
 ### Spring cloud Architecture:
 ![](https://github.com/sagarsumit03/Spring-Cloud/blob/master/Diagram.PNG)
-
+-----
 ###### Running the Application:
 start all the Application with their respective main classes. and use below URLs to check the Servers:
 
@@ -26,19 +26,20 @@ to use the clients from eureka server:
 ------------
 
 
-##### Gateway Server:
+### Gateway Server:
 When calling any service from the browser we can't call them by their names, thats internal to the services. And as we grow more instances of services and replicas having different ports, to distribute the services to all the instances of the Service we use a **GATEWAY**.
   
 >  A gateway is a single entry point into the system, used to handle requests by routing them to the corresponding service. It can also be used for authentication, monitoring, and more.
 
-What is  Zuul Server?
+#### What is  Zuul Server?
 It's a proxy, gateway, an intermediate layer between the end users and your services.
 Eureka server solved the problem of giving names to services instead of hardcoding their IP addresses.
 But, still, we may have more than one service (instances) running on different ports. So, Zuul …
 
 
-    Maps between a prefix path, say /consume-client and a service expose-client. It uses Eureka server to route the requested service.
-    It load balances (using Ribbon) between instances of a service running on different ports.
+    -- Maps between a prefix path, say /consume-client and a service expose-client.  
+    -- It uses Eureka server to route the requested service.
+    -- It load balances (using Ribbon) between instances of a service running on different ports.
     We can filter requests, add authentication, etc.
 
 
@@ -56,7 +57,13 @@ But, still, we may have more than one service (instances) running on different p
 - Static Response handling
 - Active/Active traffic management
 
-##### Service Discovery: Eureka Server
+-----
+
+### Service Discovery: Eureka Server
+It’s the naming server, or called service registry. It’s duty to give names to each microservice. Why?
+	1. No need to hardcode the IP addresses of microservices.
+	2. What if services use dynamic IP addresses; when autoscaling.
+
 
 
     Eureka Instance should not be confused with Eureka Service. Eureka Service refers to the group of microservice instances registered to the Eureka Server that provide the same service.
@@ -66,7 +73,9 @@ But, still, we may have more than one service (instances) running on different p
 
 Every microservice registers itself in the Eureka server when bootstrapped, generally using the {ServiceId} it registers into the Eureka server, or it can use the hostname or any public IP (if those are fixed). After registering, every 30 seconds, it pings the Eureka server to notify it that the service itself is available. If the Eureka server not getting any pings from a service for a quite long time, this service is unregistered from the Eureka server automatically and the Eureka server notifies the new state of the registry to all other services.
 
-##### Ribbon - Load Balancer:
+------
+
+### Ribbon - Load Balancer:
 Ribbon provides software load balancers to communicate with cluster of servers. The load balancers provide the following basic functionalities:
 Supply the public DNS name or IP of individual servers to communication client
 Rotate among a list of servers according to certain logic.
@@ -130,7 +139,7 @@ zuul:
 ```
 
 -----
-##### Hystirx Circuit Breaker:
+### Hystirx Circuit Breaker:
 When calling chained services any service can fail any time. For Example, we have 3 services A, B, C 
   A ->B and B->C  (A calls B and B calls C, lets say C failed)
 We need a callback function to handle the Exception and not chain down to the Application A.
@@ -163,7 +172,7 @@ Hystrix watches for failures in that method, and if failures occures, Hystrix op
 ------------
 
 
-##### Sleuth For Tracing Services:
+### Sleuth For Tracing Services:
 Lets say there are many services, instances or replicas. In that case when services are interacting and calling each other, it can be quite hard to trace one Service's path.
 
 Sleuth makes it possible to trace the requests by adding unique ids to logs.
