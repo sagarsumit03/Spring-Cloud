@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: client-config
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8305
+      failFast: true

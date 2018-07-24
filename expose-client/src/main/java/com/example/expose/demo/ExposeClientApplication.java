@@ -16,6 +16,7 @@ public class ExposeClientApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ExposeClientApplication.class, args);
+		
 	}
 
 	@GetMapping("/hello")
