@@ -183,3 +183,6 @@ To Use Sleuth, use regular loggers in the code, and when the Logs are logged(Or 
 
     2018-07-17 10:40:26.010  INFO [expose-client,11b669ada16b7fae,11b669ada16b7fae,false] 4004 --- [nio-8303-exec-3] c.e.expose.demo.ExposeClientApplication  : Into ExposeClient Sleuth method ... 
 
+
+	this is traceId: 11b669ada16b7fae
+	this is spanId: b77a5ea79036d5b9
