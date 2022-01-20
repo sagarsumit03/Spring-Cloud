@@ -13,8 +13,8 @@ start all the Application with their respective main classes. and use below URLs
 
 to use the clients from eureka server:
 
- http://localhost:8302/api/client1/**  
- http://localhost:8302/api/client2/**  
+ http://localhost:8302/api/client1/**   -> Consume Client
+ http://localhost:8302/api/client2/**   -> Expose Client
 
  to Test Hystrix you can goto below URL:  
  http://localhost:8302/api/client1/hystrix  
