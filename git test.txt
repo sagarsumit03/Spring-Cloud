@@ -1,3 +1,2 @@
 line 1 from branch - mybranch
 line 2 from branch - mybranch
-line 3 from branch - mybranch
